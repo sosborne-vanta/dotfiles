@@ -10,3 +10,7 @@ Do not add comments about:
 - Anything that documents the current task rather than the code itself
 
 Comments should be clean, concise, and durable — written as if the task that prompted them never existed.
+
+## Pull Request Descriptions
+
+Keep descriptions clear, concise, and easily scannable. Prefer bullet points over paragraphs. Do not wrap lines prematurely — let lines run to their natural length.
