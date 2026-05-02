@@ -41,6 +41,7 @@ link "$DOTFILES_DIR/gitconfig" "$HOME/.gitconfig"
 
 # Claude Code
 link "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
+link "$DOTFILES_DIR/claude/CLAUDE.md"     "$HOME/.claude/CLAUDE.md"
 
 # Create ~/.aliases if it doesn't exist yet (starter file, not repo-tracked)
 if [[ ! -f "$HOME/.aliases" ]]; then
