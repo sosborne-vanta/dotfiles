@@ -104,6 +104,10 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 zstyle ':omz:update' mode disabled
 
+# Claude Code shortcuts
+alias claude-dsp='claude --dangerously-skip-permissions'
+alias claude-resume='claude --dangerously-skip-permissions /resume'
+
 # Personal aliases and functions — add yours in ~/.aliases (not repo-tracked)
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
