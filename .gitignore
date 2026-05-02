@@ -1,0 +1,7 @@
+# Don't accidentally commit machine-local files
+.zshrc.local
+.aliases
+*.local
+
+# OS noise
+.DS_Store
