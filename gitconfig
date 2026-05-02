@@ -1,3 +1,7 @@
+[user]
+	name = Scott Osborne
+	email = scott.osborne@vanta.com
+
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
