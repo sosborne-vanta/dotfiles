@@ -108,6 +108,11 @@ zstyle ':omz:update' mode disabled
 alias claude-dsp='claude --dangerously-skip-permissions'
 alias claude-resume='claude --dangerously-skip-permissions /resume'
 
+# Dev workflow shortcuts
+alias cleanrun='just pp && just dev-start-qauto'
+alias quickrun='just dev-start-qauto'
+alias replacerun='just pp && just dev-replace-qauto && just dev-start-qauto'
+
 # Personal aliases and functions — add yours in ~/.aliases (not repo-tracked)
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
