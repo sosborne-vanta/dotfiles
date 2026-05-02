@@ -112,6 +112,7 @@ alias claude-resume='claude --dangerously-skip-permissions /resume'
 alias cleanrun='just pp && just dev-start-qauto'
 alias quickrun='just dev-start-qauto'
 alias replacerun='just pp && just dev-replace-qauto && just dev-start-qauto'
+alias newmain='git checkout main && git pull && just pp'
 
 # Personal aliases and functions — add yours in ~/.aliases (not repo-tracked)
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
