@@ -36,6 +36,23 @@ info "Installing dotfiles from $DOTFILES_DIR"
 link "$DOTFILES_DIR/zshrc"   "$HOME/.zshrc"
 link "$DOTFILES_DIR/zprofile" "$HOME/.zprofile"
 
+# Make zsh the login shell so tmux, VS Code terminals, etc. all source ~/.zshrc
+ZSH_BIN="$(command -v zsh || true)"
+if [[ -n "$ZSH_BIN" ]]; then
+  CURRENT_SHELL="$(getent passwd "$USER" | cut -d: -f7)"
+  if [[ "$CURRENT_SHELL" != "$ZSH_BIN" ]]; then
+    if sudo -n chsh -s "$ZSH_BIN" "$USER" 2>/dev/null; then
+      success "login shell set to $ZSH_BIN (was $CURRENT_SHELL)"
+    else
+      info "could not change login shell to $ZSH_BIN — run: sudo chsh -s $ZSH_BIN $USER"
+    fi
+  else
+    success "login shell already $ZSH_BIN"
+  fi
+else
+  info "zsh not found on PATH — skipping login shell change"
+fi
+
 # Git
 link "$DOTFILES_DIR/gitconfig" "$HOME/.gitconfig"
 
