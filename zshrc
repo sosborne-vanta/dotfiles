@@ -119,3 +119,7 @@ alias newmain='git checkout main && git pull && just pp'
 
 # Machine-local overrides — safe place for env vars, secrets, PATH tweaks
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+
+# dev Datadog Pup auth bootstrap
+export PATH="$HOME/.local/bin:$PATH"
+[ -f "$HOME/.config/pup/env.sh" ] && . "$HOME/.config/pup/env.sh"
