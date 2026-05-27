@@ -113,6 +113,7 @@ alias cleanrun='just pp && just dev-start-qauto'
 alias quickrun='just dev-start-qauto'
 alias replacerun='just pp && just dev-replace-qauto && just dev-start-qauto'
 alias newmain='git checkout main && git pull && just pp'
+alias run-fake-portals='node /workspaces/obsidian/packages/qauto-fake-portals/server.js'
 
 # Personal aliases and functions — add yours in ~/.aliases (not repo-tracked)
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
@@ -123,3 +124,6 @@ alias newmain='git checkout main && git pull && just pp'
 # dev Datadog Pup auth bootstrap
 export PATH="$HOME/.local/bin:$PATH"
 [ -f "$HOME/.config/pup/env.sh" ] && . "$HOME/.config/pup/env.sh"
+
+# dev Jira ACLI bootstrap
+export PATH="$HOME/.local/bin:$PATH"
