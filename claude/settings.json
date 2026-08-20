@@ -63,5 +63,9 @@
     ]
   },
   "skipDangerousModePermissionPrompt": true,
-  "theme": "dark"
+  "theme": "dark",
+  "enabledPlugins": {
+    "customer-trust-automation-kb@obsidian-local": true,
+    "vanta-customer-trust-automation@obsidian-local": true
+  }
 }
