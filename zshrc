@@ -115,6 +115,21 @@ alias replacerun='just pp && just dev-replace-qauto && just dev-start-qauto'
 alias newmain='git checkout main && git pull && just pp'
 alias run-fake-portals='node /workspaces/obsidian/packages/qauto-fake-portals/server.js'
 
+# gsync — Google Docs sync CLI from the obsidian monorepo. Not on PATH, and its
+# dist/ is not built by `just pp`, so build lazily on first use.
+gsync() {
+  local repo="${OBSIDIAN_DIR:-/workspaces/obsidian}"
+  if [[ ! -x "$repo/node_modules/.bin/gsync" ]]; then
+    echo "gsync: dependencies missing — run 'just pp' in $repo" >&2
+    return 1
+  fi
+  if [[ ! -f "$repo/scripts/gsync/dist/index.js" ]]; then
+    (cd "$repo" && turbo build:app -F @vanta/gsync --output-logs=errors-only) || return 1
+  fi
+  "$repo/node_modules/.bin/gsync" "$@"
+}
+alias gsync-auth='gsync auth login'
+
 # Personal aliases and functions — add yours in ~/.aliases (not repo-tracked)
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 

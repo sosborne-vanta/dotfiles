@@ -66,6 +66,15 @@
   "theme": "dark",
   "enabledPlugins": {
     "customer-trust-automation-kb@obsidian-local": true,
-    "vanta-customer-trust-automation@obsidian-local": true
+    "vanta-customer-trust-automation@obsidian-local": true,
+    "gsync-plugin@gsync-local": true
+  },
+  "extraKnownMarketplaces": {
+    "gsync-local": {
+      "source": {
+        "source": "directory",
+        "path": "/workspaces/obsidian/scripts/gsync/claude-plugin"
+      }
+    }
   }
 }
