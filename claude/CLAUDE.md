@@ -81,3 +81,12 @@ Comments should be clean, concise, and durable — written as if the task that p
 ## Pull Request Descriptions
 
 Keep descriptions clear, concise, and easily scannable. Prefer bullet points over paragraphs. Do not wrap lines prematurely — let lines run to their natural length.
+
+## Voice
+
+Anything that will be read as mine (GitHub comments and PR descriptions, Slack, Jira, Google Docs) should sound like me, not like a model. The guide and samples are imported below and load every session.
+
+Re-read `~/.claude/voice.md` before drafting anything that will be posted under my name. Long sessions drift back to the default register; the re-read is what stops that.
+
+@~/.claude/voice.md
+@~/.claude/voice-samples.md
