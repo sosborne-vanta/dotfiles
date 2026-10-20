@@ -82,4 +82,15 @@ EOF
   info "Created starter ~/.aliases (not repo-tracked — customize freely)"
 fi
 
+# Buildkite CLI, from the BUILDKITE_API_TOKEN Ona secret
+if command -v bk >/dev/null && [[ -n "${BUILDKITE_API_TOKEN:-}" ]]; then
+  if bk configure --org VantaInc --token "$BUILDKITE_API_TOKEN" --force >/dev/null; then
+    success "configured Buildkite CLI for VantaInc"
+  else
+    info "bk configure failed — run: bk configure --org VantaInc --force"
+  fi
+else
+  info "skipping Buildkite CLI config (bk or BUILDKITE_API_TOKEN missing)"
+fi
+
 success "Done. Open a new shell or run: source ~/.zshrc"
