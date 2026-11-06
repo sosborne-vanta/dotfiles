@@ -90,3 +90,16 @@ Re-read `~/.claude/voice.md` before drafting anything that will be posted under 
 
 @~/.claude/voice.md
 @~/.claude/voice-samples.md
+
+## Team knowledge base
+
+The Customer Trust Automation plans, specs, and domain notes live in
+/workspaces/customer-trust-automation-kb (the `team-context` skill in the
+vanta-customer-trust-automation plugin). Use that skill before planning, scoping,
+estimating, or answering "what's the status of" questions about Trust Center,
+QAuto, or CTM work, and before changing code in packages/trust or the
+client-trust-report / client-customer-trust-management packages. The markdown
+there is the source of truth for intent and scope; Jira is the source of truth
+for ticket status. When a change you make contradicts a plan or spec there,
+say so and draft the KB update in the same task. Show me the diff before
+committing; on my go-ahead, plan updates commit straight to main and push.
