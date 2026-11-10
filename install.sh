@@ -62,6 +62,30 @@ link "$DOTFILES_DIR/claude/CLAUDE.md"     "$HOME/.claude/CLAUDE.md"
 link "$DOTFILES_DIR/claude/voice.md"      "$HOME/.claude/voice.md"
 link "$DOTFILES_DIR/claude/voice-samples.md" "$HOME/.claude/voice-samples.md"
 
+# THABTO skill, tracked from wihli/dotfiles main
+WIHLI_DOTFILES_DIR="$HOME/.local/share/wihli-dotfiles"
+THABTO_SUBDIR="skills/.local/share/skills/thabto"
+if [[ -d "$WIHLI_DOTFILES_DIR/.git" ]]; then
+  if git -C "$WIHLI_DOTFILES_DIR" pull --quiet --ff-only; then
+    success "updated wihli/dotfiles"
+  else
+    info "could not update $WIHLI_DOTFILES_DIR — using existing checkout"
+  fi
+elif git clone --quiet --depth 1 --filter=blob:none --sparse \
+    https://github.com/wihli/dotfiles.git "$WIHLI_DOTFILES_DIR" \
+  && git -C "$WIHLI_DOTFILES_DIR" sparse-checkout set "$THABTO_SUBDIR"; then
+  success "cloned wihli/dotfiles"
+else
+  info "could not clone wihli/dotfiles — skipping thabto skill"
+fi
+if [[ -f "$WIHLI_DOTFILES_DIR/$THABTO_SUBDIR/SKILL.md" ]]; then
+  # SKILL.md hardcodes ~/.local/share/skills/thabto; the agent dirs point at that shared path
+  link "$WIHLI_DOTFILES_DIR/$THABTO_SUBDIR" "$HOME/.local/share/skills/thabto"
+  link "$HOME/.local/share/skills/thabto"   "$HOME/.claude/skills/thabto"
+  link "$HOME/.local/share/skills/thabto"   "$HOME/.agents/skills/thabto"
+  link "$HOME/.local/share/skills/thabto"   "$HOME/.codex/skills/thabto"
+fi
+
 # Create ~/.aliases if it doesn't exist yet (starter file, not repo-tracked)
 if [[ ! -f "$HOME/.aliases" ]]; then
   cat > "$HOME/.aliases" <<'EOF'
