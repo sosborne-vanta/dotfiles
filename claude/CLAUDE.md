@@ -94,7 +94,9 @@ Re-read `~/.claude/voice.md` before drafting anything that will be posted under 
 ## Team knowledge base
 
 The Customer Trust Automation plans, specs, and domain notes live in
-/workspaces/customer-trust-automation-kb (the `team-context` skill in the
+the customer-trust-automation-kb checkout next to obsidian
+(/workspaces/customer-trust-automation-kb on Ona, ~/code/customer-trust-automation-kb
+on macOS; the `team-context` skill in the
 vanta-customer-trust-automation plugin). Use that skill before planning, scoping,
 estimating, or answering "what's the status of" questions about Trust Center,
 QAuto, or CTM work, and before changing code in packages/trust or the
