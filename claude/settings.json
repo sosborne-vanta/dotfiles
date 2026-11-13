@@ -7,7 +7,7 @@
       {
         "hooks": [
           {
-            "command": "python3 /home/vscode/.dev/hooks/providers/claude/finish.py",
+            "command": "if [ -n \"${DEV_TERMINAL_SESSION_ID:-}\" ] && [ -n \"${DEV_HOOK_BUNDLE_DIR:-}\" ] && command -v python3 >/dev/null 2>&1 && [ -f \"$DEV_HOOK_BUNDLE_DIR/providers/claude/finish.py\" ]; then python3 \"$DEV_HOOK_BUNDLE_DIR/providers/claude/finish.py\"; fi",
             "timeout": 10,
             "type": "command"
           }
@@ -20,7 +20,7 @@
         "hooks": [
           {
             "async": true,
-            "command": "python3 /home/vscode/.dev/hooks/providers/claude/heartbeat.py",
+            "command": "if [ -n \"${DEV_TERMINAL_SESSION_ID:-}\" ] && [ -n \"${DEV_HOOK_BUNDLE_DIR:-}\" ] && command -v python3 >/dev/null 2>&1 && [ -f \"$DEV_HOOK_BUNDLE_DIR/providers/claude/heartbeat.py\" ]; then python3 \"$DEV_HOOK_BUNDLE_DIR/providers/claude/heartbeat.py\"; fi",
             "timeout": 10,
             "type": "command"
           }
@@ -32,7 +32,7 @@
       {
         "hooks": [
           {
-            "command": "python3 /home/vscode/.dev/hooks/providers/claude/finish.py",
+            "command": "if [ -n \"${DEV_TERMINAL_SESSION_ID:-}\" ] && [ -n \"${DEV_HOOK_BUNDLE_DIR:-}\" ] && command -v python3 >/dev/null 2>&1 && [ -f \"$DEV_HOOK_BUNDLE_DIR/providers/claude/finish.py\" ]; then python3 \"$DEV_HOOK_BUNDLE_DIR/providers/claude/finish.py\"; fi",
             "timeout": 10,
             "type": "command"
           }
@@ -43,7 +43,7 @@
       {
         "hooks": [
           {
-            "command": "python3 /home/vscode/.dev/hooks/providers/claude/finish.py",
+            "command": "if [ -n \"${DEV_TERMINAL_SESSION_ID:-}\" ] && [ -n \"${DEV_HOOK_BUNDLE_DIR:-}\" ] && command -v python3 >/dev/null 2>&1 && [ -f \"$DEV_HOOK_BUNDLE_DIR/providers/claude/finish.py\" ]; then python3 \"$DEV_HOOK_BUNDLE_DIR/providers/claude/finish.py\"; fi",
             "timeout": 10,
             "type": "command"
           }
@@ -54,7 +54,7 @@
       {
         "hooks": [
           {
-            "command": "python3 /home/vscode/.dev/hooks/providers/claude/start.py",
+            "command": "if [ -n \"${DEV_TERMINAL_SESSION_ID:-}\" ] && [ -n \"${DEV_HOOK_BUNDLE_DIR:-}\" ] && command -v python3 >/dev/null 2>&1 && [ -f \"$DEV_HOOK_BUNDLE_DIR/providers/claude/start.py\" ]; then python3 \"$DEV_HOOK_BUNDLE_DIR/providers/claude/start.py\"; fi",
             "timeout": 10,
             "type": "command"
           }
