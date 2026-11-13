@@ -67,7 +67,8 @@
   "enabledPlugins": {
     "customer-trust-automation-kb@obsidian-local": true,
     "vanta-customer-trust-automation@obsidian-local": true,
-    "gsync-plugin@gsync-local": true
+    "gsync-plugin@gsync-local": true,
+    "jira-operations@obsidian-local": true
   },
   "extraKnownMarketplaces": {
     "gsync-local": {

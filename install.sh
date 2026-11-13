@@ -30,7 +30,8 @@ link() {
   success "linked: $dst -> $src"
 }
 
-info "Installing dotfiles from $DOTFILES_DIR"
+OS="$(uname -s)"   # Darwin on macOS, Linux on Ona
+info "Installing dotfiles from $DOTFILES_DIR ($OS)"
 
 # Shell
 link "$DOTFILES_DIR/zshrc"   "$HOME/.zshrc"
@@ -39,8 +40,16 @@ link "$DOTFILES_DIR/zprofile" "$HOME/.zprofile"
 # Make zsh the login shell so tmux, VS Code terminals, etc. all source ~/.zshrc
 ZSH_BIN="$(command -v zsh || true)"
 if [[ -n "$ZSH_BIN" ]]; then
-  CURRENT_SHELL="$(getent passwd "$USER" | cut -d: -f7)"
-  if [[ "$CURRENT_SHELL" != "$ZSH_BIN" ]]; then
+  if [[ "$OS" == "Darwin" ]]; then
+    CURRENT_SHELL="$(dscl . -read "/Users/$USER" UserShell 2>/dev/null | awk '{print $2}')"
+  else
+    CURRENT_SHELL="$(getent passwd "$USER" | cut -d: -f7)"
+  fi
+  if [[ "$CURRENT_SHELL" == */zsh ]]; then
+    success "login shell already zsh ($CURRENT_SHELL)"
+  elif [[ "$OS" == "Darwin" ]]; then
+    info "login shell is $CURRENT_SHELL — run: chsh -s /bin/zsh"
+  elif [[ "$CURRENT_SHELL" != "$ZSH_BIN" ]]; then
     if sudo -n chsh -s "$ZSH_BIN" "$USER" 2>/dev/null; then
       success "login shell set to $ZSH_BIN (was $CURRENT_SHELL)"
     else
@@ -57,10 +66,34 @@ fi
 link "$DOTFILES_DIR/gitconfig" "$HOME/.gitconfig"
 
 # Claude Code
-link "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
+# The Ona settings carry hooks under /home/vscode/.dev, so macOS gets its own file
+if [[ "$OS" == "Darwin" ]]; then
+  link "$DOTFILES_DIR/claude/settings.macos.json" "$HOME/.claude/settings.json"
+else
+  link "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
+fi
 link "$DOTFILES_DIR/claude/CLAUDE.md"     "$HOME/.claude/CLAUDE.md"
 link "$DOTFILES_DIR/claude/voice.md"      "$HOME/.claude/voice.md"
 link "$DOTFILES_DIR/claude/voice-samples.md" "$HOME/.claude/voice-samples.md"
+
+# Personal Claude skills tracked in this repo
+for skill_dir in "$DOTFILES_DIR"/claude/skills/*/; do
+  [[ -f "$skill_dir/SKILL.md" ]] || continue
+  link "${skill_dir%/}" "$HOME/.claude/skills/$(basename "$skill_dir")"
+done
+
+# stratus-cli skill, from the Stratus CLI when it's installed (the Mac app ships it)
+if [[ -f "$HOME/.claude/skills/stratus-cli/SKILL.md" ]]; then
+  success "stratus-cli skill already installed"
+elif command -v stratus >/dev/null; then
+  if stratus skill install --agent claude-code --global --yes >/dev/null 2>&1; then
+    success "installed stratus-cli skill"
+  else
+    info "stratus skill install failed — run: stratus skill install --agent claude-code --global --yes"
+  fi
+else
+  info "stratus not on PATH — skipping stratus-cli skill"
+fi
 
 # THABTO skill, tracked from wihli/dotfiles main
 WIHLI_DOTFILES_DIR="$HOME/.local/share/wihli-dotfiles"

@@ -1,0 +1,17 @@
+{
+  "theme": "dark",
+  "enabledPlugins": {
+    "customer-trust-automation-kb@obsidian-local": true,
+    "vanta-customer-trust-automation@obsidian-local": true,
+    "jira-operations@obsidian-local": true,
+    "gsync-plugin@gsync-local": true
+  },
+  "extraKnownMarketplaces": {
+    "gsync-local": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/sosborne/code/obsidian/scripts/gsync/claude-plugin"
+      }
+    }
+  }
+}

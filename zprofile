@@ -1,4 +1,7 @@
-source $HOME/.profile
+[ -f "$HOME/.profile" ] && source "$HOME/.profile"
+
+# macOS: put Homebrew on PATH
+[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Ona injects user secrets here; the upstream hook only patches .bashrc, so source it from zsh too.
 [ -f /etc/profile.d/ona-secrets.sh ] && . /etc/profile.d/ona-secrets.sh
